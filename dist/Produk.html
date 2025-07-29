@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - T-Shirt K</title>
+    <link rel="stylesheet" href="./output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-blue-600">T-Shirt K</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Beranda</a>
+                        <a href="Produk.html" class="text-blue-600 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Produk</a>
+                        <a href="Kategori.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Kategori</a>
+                        <a href="Tentang Kami.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Tentang Kami</a>
+                        <a href="admin-login.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Admin</a>
+                        <button id="cart-button" class="relative text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
+                            </svg>
+                            <span id="cart-count" class="absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none focus:text-blue-600">
+                        <svg id="menu-icon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="close-icon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition duration-300">Beranda</a>
+                    <a href="Produk.html" class="text-blue-600 hover:text-blue-800 block px-3 py-2 rounded-md text-base font-medium transition duration-300">Produk</a>
+                    <a href="Kategori.html" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition duration-300">Kategori</a>
+                    <a href="Tentang Kami.html" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition duration-300">Tentang Kami</a>
+                    <a href="admin-login.html" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition duration-300">Admin</a>
+                    <button id="cart-button-mobile" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition duration-300 w-full text-left">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
+                            </svg>
+                            Keranjang
+                            <span id="cart-count-mobile" class="ml-auto bg-green-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Header -->
+    <section class="pt-16 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold mb-4">Produk Kami</h1>
+                <p class="text-xl">Temukan koleksi lengkap kaos premium kami.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="py-8 bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center space-x-4">
+                    <select class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option>All Categories</option>
+                        <option>Classic</option>
+                        <option>Sport</option>
+                        <option>Art</option>
+                        <option>Limited Edition</option>
+                    </select>
+                    <select class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option>All Sizes</option>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                        <option>XL</option>
+                    </select>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-600">Sort by:</span>
+                    <select class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option>Latest</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                        <option>Popular</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="products-grid">
+                <!-- Products will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+             
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-blue-400 mb-4">T-Shirt K</h3>
+                    <p class="text-gray-400">Premium T-shirts for everyone. Quality, comfort, and style in every piece.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition duration-300">Beranda</a></li>
+                        <li><a href="Produk.html" class="hover:text-white transition duration-300">Produk</a></li>
+                        <li><a href="Kategori.html" class="hover:text-white transition duration-300">Kategori</a></li>
+                        <li><a href="Tentang Kami.html" class="hover:text-white transition duration-300">Tentang Kami</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Customer Service</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition duration-300">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">Shipping Info</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">Returns</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 T-Shirt K. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-medium text-gray-900">Keranjang Belanja</h3>
+                    <button id="close-cart" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="cart-items" class="space-y-4 max-h-64 overflow-y-auto">
+                    <!-- Cart items will be loaded here -->
+                </div>
+                <div id="cart-empty" class="text-center py-8 hidden">
+                    <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
+                    </svg>
+                    <p class="text-gray-500">Keranjang belanja kosong</p>
+                </div>
+                <div id="cart-summary" class="border-t pt-4 mt-4 hidden">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-semibold">Total:</span>
+                        <span id="cart-total" class="font-bold text-lg text-blue-600">Rp.0</span>
+                    </div>
+                    <button id="checkout-btn" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300">
+                        Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                // Toggle menu visibility
+                const isMenuHidden = mobileMenu.classList.contains('hidden');
+                
+                if (isMenuHidden) {
+                    // Show menu
+                    mobileMenu.classList.remove('hidden');
+                    menuIcon.classList.add('hidden');
+                    closeIcon.classList.remove('hidden');
+                } else {
+                    // Hide menu
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                }
+            });
+            
+            // Close menu when clicking on a link
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                }
+            });
+
+            // Load products from admin dashboard
+            loadProductsFromAdmin();
+
+            // Event listeners for cart modal
+            const cartButton = document.getElementById('cart-button');
+            const cartButtonMobile = document.getElementById('cart-button-mobile');
+            const closeCartButton = document.getElementById('close-cart');
+            const checkoutButton = document.getElementById('checkout-btn');
+            if (cartButton) cartButton.addEventListener('click', showCartModal);
+            if (cartButtonMobile) cartButtonMobile.addEventListener('click', showCartModal);
+            if (closeCartButton) closeCartButton.addEventListener('click', hideCartModal);
+            if (checkoutButton) checkoutButton.addEventListener('click', checkout);
+            // Close cart modal when clicking outside
+            const cartModal = document.getElementById('cart-modal');
+            if (cartModal) {
+                cartModal.addEventListener('click', function(e) {
+                    if (e.target === cartModal) {
+                        hideCartModal();
+                    }
+                });
+            }
+            // Load cart from localStorage
+            loadCartFromLocalStorage();
+        });
+
+        function loadProductsFromAdmin() {
+            const productsGrid = document.getElementById('products-grid');
+            
+            // Get products from localStorage (set by admin dashboard)
+            const savedProducts = localStorage.getItem('adminProducts');
+            let products = [];
+            
+            if (savedProducts) {
+                products = JSON.parse(savedProducts);
+            } else {
+                // Default products if no admin data
+                products = [
+                    {
+                        id: 1,
+                        name: "Koleksi Klasik",
+                        category: "Klasik",
+                        price: 199000,
+                        stock: 25,
+                        description: "Desain abadi untuk sehari-hari",
+                        image: "/image/clasicc k.jpg"
+                    },
+                    {
+                        id: 2,
+                        name: "Koleksi Olahraga",
+                        category: "Olahraga",
+                        price: 388000,
+                        stock: 30,
+                        description: "Sempurna untuk gaya hidup aktif",
+                        image: "/image/sport.png"
+                    },
+                    {
+                        id: 3,
+                        name: "Koleksi Seni",
+                        category: "Seni",
+                        price: 450000,
+                        stock: 15,
+                        description: "Desain kreatif dan artistik",
+                        image: "/image/seni k.jpg"
+                    },
+                    {
+                        id: 4,
+                        name: "Edisi Terbatas",
+                        category: "Edisi Terbatas",
+                        price: 1000000,
+                        stock: 5,
+                        description: "Desain eksklusif dalam jumlah terbatas",
+                        image: "/image/limited.jpg"
+                    }
+                ];
+            }
+
+            // Clear existing products
+            productsGrid.innerHTML = '';
+
+            // Render products
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300';
+                
+                // Determine badge based on stock
+                let badge = '';
+                if (product.stock === 0) {
+                    badge = '<div class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs">Habis</div>';
+                } else if (product.stock <= 10) {
+                    badge = '<div class="absolute top-2 right-2 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs">Terbatas</div>';
+                } else if (product.id <= 2) {
+                    badge = '<div class="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded-full text-xs">Best Seller</div>';
+                }
+
+                productCard.innerHTML = `
+                    <div class="h-64 bg-gray-100 flex items-center justify-center relative overflow-hidden">
+                        <img src="${product.image}" 
+                             alt="${product.name}" 
+                             class="w-full h-full object-cover hover:scale-105 transition duration-300"
+                             onerror="this.src='/image/default-product.jpg'">
+                        ${badge}
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">${product.name}</h3>
+                        <p class="text-gray-600 text-sm mb-3">${product.description}</p>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-yellow-400">
+                                <!-- Bintang rating statis -->
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-2">(4.5)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-blue-600 font-bold text-lg">Rp.${product.price.toLocaleString()}</span>
+                            <div class="flex space-x-2">
+                                <button onclick="addToCart(${product.id})" class="bg-green-600 text-white px-3 py-2 rounded-md text-sm hover:bg-green-700 transition duration-300 ${product.stock === 0 ? 'opacity-50 cursor-not-allowed' : ''}" ${product.stock === 0 ? 'disabled' : ''}>
+                                    ${product.stock === 0 ? 'Stok Habis' : 'Keranjang'}
+                                </button>
+                                <button onclick="goToProductDetail(${product.id})" class="bg-blue-600 text-white px-3 py-2 rounded-md text-sm hover:bg-blue-700 transition duration-300 ${product.stock === 0 ? 'opacity-50 cursor-not-allowed' : ''}" ${product.stock === 0 ? 'disabled' : ''}>
+                                    ${product.stock === 0 ? 'Stok Habis' : 'Detail'}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-sm text-gray-500">
+                            Stok: ${product.stock} pcs
+                        </div>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        function addToCart(productId, quantity = 1) {
+            const savedProducts = localStorage.getItem('adminProducts');
+            let products = [];
+            if (savedProducts) {
+                products = JSON.parse(savedProducts);
+            } else {
+                products = [
+                    {id: 1, name: "Koleksi Klasik", price: 199000, stock: 25, image: "/image/clasicc k.jpg"},
+                    {id: 2, name: "Koleksi Olahraga", price: 388000, stock: 30, image: "/image/sport.png"},
+                    {id: 3, name: "Koleksi Seni", price: 450000, stock: 15, image: "/image/seni k.jpg"},
+                    {id: 4, name: "Edisi Terbatas", price: 1000000, stock: 5, image: "/image/limited.jpg"}
+                ];
+            }
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            if (product.stock <= 0) {
+                showNotification('Produk habis stok!', 'error');
+                return;
+            }
+            let cartItems = [];
+            const savedCart = localStorage.getItem('cartItems');
+            if (savedCart) {
+                cartItems = JSON.parse(savedCart);
+            }
+            const existingItem = cartItems.find(item => item.id === productId);
+            if (existingItem) {
+                if (existingItem.quantity + quantity > product.stock) {
+                    showNotification(`Stok tidak mencukupi! Tersedia: ${product.stock} item`, 'error');
+                    return;
+                }
+                existingItem.quantity += quantity;
+                showNotification(`${product.name} ditambahkan ke keranjang (${existingItem.quantity} item)`);
+            } else {
+                cartItems.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: quantity
+                });
+                showNotification(`${product.name} ditambahkan ke keranjang`);
+            }
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            updateCartDisplay();
+            animateCartBadge();
+        }
+
+        function goToProductDetail(productId) {
+            window.location.href = `detail-dynamic.html?id=${productId}`;
+        }
+
+        function animateCartBadge() {
+            const cartCount = document.getElementById('cart-count');
+            const cartCountMobile = document.getElementById('cart-count-mobile');
+            if (cartCount) {
+                cartCount.classList.add('animate-pulse');
+                setTimeout(() => cartCount.classList.remove('animate-pulse'), 600);
+            }
+            if (cartCountMobile) {
+                cartCountMobile.classList.add('animate-pulse');
+                setTimeout(() => cartCountMobile.classList.remove('animate-pulse'), 600);
+            }
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            const bgColor = type === 'error' ? 'bg-red-500' : 'bg-green-500';
+            notification.className = `fixed top-4 right-4 ${bgColor} text-white px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-300 translate-x-full`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Global variable to store cart items
+        let cartItems = [];
+
+        function renderCartItems() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartEmpty = document.getElementById('cart-empty');
+            const cartSummary = document.getElementById('cart-summary');
+            const cartTotal = document.getElementById('cart-total');
+            if (cartItems.length === 0) {
+                cartEmpty.classList.remove('hidden');
+                cartSummary.classList.add('hidden');
+                cartItemsContainer.innerHTML = '';
+                return;
+            }
+            cartEmpty.classList.add('hidden');
+            cartSummary.classList.remove('hidden');
+            let total = 0;
+            cartItemsContainer.innerHTML = '';
+            cartItems.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                const itemElement = document.createElement('div');
+                itemElement.className = 'flex items-center space-x-3 p-3 border rounded-lg';
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-cover rounded">
+                    <div class="flex-1">
+                        <h4 class="font-medium text-sm">${item.name}</h4>
+                        <p class="text-gray-600 text-sm">Rp.${item.price.toLocaleString()}</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="updateCartQuantity(${item.id}, ${item.quantity - 1})" class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center text-sm">-</button>
+                        <span class="text-sm w-8 text-center">${item.quantity}</span>
+                        <button onclick="updateCartQuantity(${item.id}, ${item.quantity + 1})" class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center text-sm">+</button>
+                        <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+            });
+            cartTotal.textContent = `Rp.${total.toLocaleString()}`;
+        }
+
+        function showCartModal() {
+            const cartModal = document.getElementById('cart-modal');
+            if (cartModal) {
+                cartModal.classList.remove('hidden');
+                renderCartItems();
+            }
+        }
+        function hideCartModal() {
+            const cartModal = document.getElementById('cart-modal');
+            if (cartModal) {
+                cartModal.classList.add('hidden');
+            }
+        }
+        function updateCartQuantity(productId, newQuantity) {
+            const item = cartItems.find(item => item.id === productId);
+            if (item) {
+                if (newQuantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    // Check stock limit
+                    const savedProducts = localStorage.getItem('adminProducts');
+                    let products = [];
+                    if (savedProducts) {
+                        products = JSON.parse(savedProducts);
+                    }
+                    const product = products.find(p => p.id === productId);
+                    if (product && newQuantity > product.stock) {
+                        showNotification(`Stok tidak mencukupi! Tersedia: ${product.stock} item`, 'error');
+                        return;
+                    }
+                    item.quantity = newQuantity;
+                    updateCartDisplay();
+                    saveCartToLocalStorage();
+                    renderCartItems();
+                }
+            }
+        }
+        function removeFromCart(productId) {
+            cartItems = cartItems.filter(item => item.id !== productId);
+            updateCartDisplay();
+            saveCartToLocalStorage();
+            renderCartItems();
+        }
+        function checkout() {
+            if (cartItems.length === 0) {
+                showNotification('Keranjang belanja kosong!', 'error');
+                return;
+            }
+            // Get products from localStorage
+            const savedProducts = localStorage.getItem('adminProducts');
+            let products = [];
+            if (savedProducts) {
+                products = JSON.parse(savedProducts);
+            }
+            // Validate stock before checkout
+            let hasInsufficientStock = false;
+            cartItems.forEach(item => {
+                const product = products.find(p => p.id === item.id);
+                if (product && item.quantity > product.stock) {
+                    hasInsufficientStock = true;
+                    showNotification(`${product.name} stok tidak mencukupi!`, 'error');
+                }
+            });
+            if (hasInsufficientStock) {
+                return;
+            }
+            // Reduce stock for all items in cart
+            cartItems.forEach(item => {
+                const product = products.find(p => p.id === item.id);
+                if (product) {
+                    product.stock -= item.quantity;
+                    if (product.stock < 0) product.stock = 0;
+                }
+            });
+            // Save updated products to localStorage
+            localStorage.setItem('adminProducts', JSON.stringify(products));
+            // Clear cart
+            cartItems = [];
+            saveCartToLocalStorage();
+            updateCartDisplay();
+            hideCartModal();
+            showNotification('Pembelian berhasil! Stok telah diperbarui.');
+        }
+        function updateCartDisplay() {
+            const cartCount = document.getElementById('cart-count');
+            const cartCountMobile = document.getElementById('cart-count-mobile');
+            let cartItemsLS = [];
+            const savedCart = localStorage.getItem('cartItems');
+            if (savedCart) {
+                cartItemsLS = JSON.parse(savedCart);
+            }
+            cartItems = cartItemsLS;
+            const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+            if (cartCount) cartCount.textContent = totalItems;
+            if (cartCountMobile) cartCountMobile.textContent = totalItems;
+            // Show/hide cart count badge
+            if (cartCount) cartCount.classList[totalItems > 0 ? 'remove' : 'add']('hidden');
+            if (cartCountMobile) cartCountMobile.classList[totalItems > 0 ? 'remove' : 'add']('hidden');
+        }
+        function loadCartFromLocalStorage() {
+            const savedCart = localStorage.getItem('cartItems');
+            if (savedCart) {
+                cartItems = JSON.parse(savedCart);
+                updateCartDisplay();
+            }
+        }
+        function saveCartToLocalStorage() {
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Shirt K - Toko Kaos Premium</title>
+    <link rel="stylesheet" href="./output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-blue-600">T-Shirt K</h1>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="text-blue-600 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Beranda</a>
+                        <a href="Produk.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Produk</a>
+                        <a href="Kategori.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Kategori</a>
+                        <a href="Tentang Kami.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Tentang Kami</a>
+                        <a href="admin-login.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Admin</a>
+                        <button id="cart-button" class="relative text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
+                            </svg>
+                            <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none focus:text-blue-600">
+                        <svg id="menu-icon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="close-icon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
+                    <a href="index.html" class="text-blue-600 hover:text-blue-800 block px-3 py-2 rounded-md text-base font-medium transition duration-300">Beranda</a>
+                    <a href="Produk.html" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition duration-300">Produk</a>
+                    <a href="Kategori.html" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition duration-300">Kategori</a>
+                    <a href="Tentang Kami.html" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition duration-300">Tentang Kami</a>
+                    <a href="admin-login.html" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition duration-300">Admin</a>
+                    <button id="cart-button-mobile" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition duration-300 w-full text-left">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
+                            </svg>
+                            Keranjang
+                            <span id="cart-count-mobile" class="ml-auto bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                        </div>
+                    </button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-16 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">Kaos Premium untuk Semua Orang</h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Temukan koleksi kaos berkualitas tinggi, nyaman, dan stylish kami yang dirancang untuk setiap kesempatan.</p>
+                <a href="/dist/Produk.html" class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300 text-lg inline-block">
+                    Beli Sekarang
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Mengapa Memilih T-Shirt K?</h2>
+                <p class="text-lg text-gray-600">Kami menyediakan kaos berkualitas terbaik dengan bahan dan desain premium</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="text-center p-6">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Kualitas Premium</h3>
+                    <p class="text-gray-600">Terbuat dari 100% katun dengan pengerjaan yang unggul untuk kenyamanan dan ketahanan maksimal.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="text-center p-6">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Desain Unik</h3>
+                    <p class="text-gray-600">Karya seni eksklusif dan desain trendi yang membuat Anda tampil menonjol di antara yang lain dengan percaya diri.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="text-center p-6">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Pengiriman Cepat</h3>
+                    <p class="text-gray-600">Pengiriman cepat dan aman untuk mengirimkan kaos favorit Anda langsung ke pintu rumah Anda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Preview Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Koleksi Unggulan</h2>
+                <p class="text-lg text-gray-600">Jelajahi koleksi kaos terpopuler kami</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="featured-products">
+                <!-- Products will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-blue-400 mb-4">T-Shirt K</h3>
+                    <p class="text-gray-400">Kaos premium untuk semua orang. Kualitas, kenyamanan, dan gaya dalam setiap potongan.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Tautan Cepat</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#home" class="hover:text-white transition duration-300">Beranda</a></li>
+                        <li><a href="#products" class="hover:text-white transition duration-300">Produk</a></li>
+                        <li><a href="#category" class="hover:text-white transition duration-300">Kategori</a></li>
+                        <li><a href="#about" class="hover:text-white transition duration-300">Tentang Kami</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Layanan Pelanggan</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition duration-300">Hubungi Kami</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">Info Pengiriman</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">Pengembalian</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">Panduan Ukuran</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Ikuti Kami</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 T-Shirt K. Semua hak dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-medium text-gray-900">Keranjang Belanja</h3>
+                    <button id="close-cart" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="cart-items" class="space-y-4 max-h-64 overflow-y-auto">
+                    <!-- Cart items will be loaded here -->
+                </div>
+                <div id="cart-empty" class="text-center py-8 hidden">
+                    <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
+                    </svg>
+                    <p class="text-gray-500">Keranjang belanja kosong</p>
+                </div>
+                <div id="cart-summary" class="border-t pt-4 mt-4 hidden">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-semibold">Total:</span>
+                        <span id="cart-total" class="font-bold text-lg text-blue-600">Rp.0</span>
+                    </div>
+                    <button id="checkout-btn" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300">
+                        Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                // Toggle menu visibility
+                const isMenuHidden = mobileMenu.classList.contains('hidden');
+                
+                if (isMenuHidden) {
+                    // Show menu
+                    mobileMenu.classList.remove('hidden');
+                    menuIcon.classList.add('hidden');
+                    closeIcon.classList.remove('hidden');
+                } else {
+                    // Hide menu
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                }
+            });
+            
+            // Close menu when clicking on a link
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                }
+            });
+
+            // Load featured products from admin dashboard
+            loadFeaturedProducts();
+
+            // Add event listeners for cart
+            const cartButton = document.getElementById('cart-button');
+            const cartButtonMobile = document.getElementById('cart-button-mobile');
+            const closeCartButton = document.getElementById('close-cart');
+            const checkoutButton = document.getElementById('checkout-btn');
+
+            cartButton.addEventListener('click', showCartModal);
+            cartButtonMobile.addEventListener('click', showCartModal);
+            closeCartButton.addEventListener('click', hideCartModal);
+            checkoutButton.addEventListener('click', checkout);
+
+            // Close cart modal when clicking outside
+            const cartModal = document.getElementById('cart-modal');
+            cartModal.addEventListener('click', function(e) {
+                if (e.target === cartModal) {
+                    hideCartModal();
+                }
+            });
+
+            // Load cart from localStorage
+            loadCartFromLocalStorage();
+        });
+
+        // Global variable to store cart items
+        let cartItems = [];
+
+        function loadFeaturedProducts() {
+            const featuredProducts = document.getElementById('featured-products');
+            
+            // Get products from localStorage (set by admin dashboard)
+            const savedProducts = localStorage.getItem('adminProducts');
+            let products = [];
+            
+            if (savedProducts) {
+                products = JSON.parse(savedProducts);
+            } else {
+                // Default products if no admin data
+                products = [
+                    {
+                        id: 1,
+                        name: "Koleksi Klasik",
+                        category: "Klasik",
+                        price: 199000,
+                        stock: 25,
+                        description: "Desain abadi untuk sehari-hari",
+                        image: "/image/clasicc k.jpg"
+                    },
+                    {
+                        id: 2,
+                        name: "Koleksi Olahraga",
+                        category: "Olahraga",
+                        price: 388000,
+                        stock: 30,
+                        description: "Sempurna untuk gaya hidup aktif",
+                        image: "/image/sport.png"
+                    },
+                    {
+                        id: 3,
+                        name: "Koleksi Seni",
+                        category: "Seni",
+                        price: 450000,
+                        stock: 15,
+                        description: "Desain kreatif dan artistik",
+                        image: "/image/seni k.jpg"
+                    },
+                    {
+                        id: 4,
+                        name: "Edisi Terbatas",
+                        category: "Edisi Terbatas",
+                        price: 1000000,
+                        stock: 5,
+                        description: "Desain eksklusif dalam jumlah terbatas",
+                        image: "/image/limited.jpg"
+                    }
+                ];
+            }
+
+            // Clear existing products
+            featuredProducts.innerHTML = '';
+
+            // Render first 4 products as featured
+            products.slice(0, 4).forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300';
+                
+                // Determine badge based on stock
+                let badge = '';
+                if (product.stock === 0) {
+                    badge = '<div class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs">Habis</div>';
+                } else if (product.stock <= 10) {
+                    badge = '<div class="absolute top-2 right-2 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs">Terbatas</div>';
+                } else if (product.id <= 2) {
+                    badge = '<div class="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded-full text-xs">Best Seller</div>';
+                }
+
+                productCard.innerHTML = `
+                    <div class="h-64 bg-gray-100 flex items-center justify-center relative overflow-hidden">
+                        <img src="${product.image}" 
+                             alt="${product.name}" 
+                             class="w-full h-full object-cover hover:scale-105 transition duration-300"
+                             onerror="this.src='/image/default-product.jpg'">
+                        ${badge}
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">${product.name}</h3>
+                        <p class="text-gray-600 text-sm mb-3">${product.description}</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-blue-600 font-bold">Rp.${product.price.toLocaleString()}</span>
+                            <div class="flex space-x-2">
+                                <button onclick="addToCart(${product.id})" class="bg-green-600 text-white px-3 py-2 rounded-md text-sm hover:bg-green-700 transition duration-300 ${product.stock === 0 ? 'opacity-50 cursor-not-allowed' : ''}" ${product.stock === 0 ? 'disabled' : ''}>
+                                    ${product.stock === 0 ? 'Stok Habis' : 'Keranjang'}
+                                </button>
+                                <button onclick="goToProductDetail(${product.id})" class="bg-blue-600 text-white px-3 py-2 rounded-md text-sm hover:bg-blue-700 transition duration-300">
+                                    Detail
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-sm text-gray-500">
+                            Stok: ${product.stock} pcs
+                        </div>
+                    </div>
+                `;
+                
+                featuredProducts.appendChild(productCard);
+            });
+        }
+
+        function goToProductDetail(productId) {
+            // Navigate to dynamic detail page with product ID
+            window.location.href = `detail-dynamic.html?id=${productId}`;
+        }
+
+        // Cart Functions
+        function addToCart(productId, quantity = 1) {
+            // Get products from localStorage
+            const savedProducts = localStorage.getItem('adminProducts');
+            let products = [];
+            
+            if (savedProducts) {
+                products = JSON.parse(savedProducts);
+            } else {
+                // Default products if no admin data
+                products = [
+                    { id: 1, name: "Koleksi Klasik", price: 199000, image: "/image/clasicc k.jpg", stock: 25 },
+                    { id: 2, name: "Koleksi Olahraga", price: 388000, image: "/image/sport.png", stock: 30 },
+                    { id: 3, name: "Koleksi Seni", price: 450000, image: "/image/seni k.jpg", stock: 15 },
+                    { id: 4, name: "Edisi Terbatas", price: 1000000, image: "/image/limited.jpg", stock: 5 }
+                ];
+            }
+
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            // Check if product has stock
+            if (product.stock <= 0) {
+                showNotification('Produk habis stok!', 'error');
+                return;
+            }
+
+            // Check if product is already in cart
+            const existingItem = cartItems.find(item => item.id === productId);
+            
+            if (existingItem) {
+                // Check if adding more would exceed stock
+                if (existingItem.quantity + quantity > product.stock) {
+                    showNotification(`Stok tidak mencukupi! Tersedia: ${product.stock} item`, 'error');
+                    return;
+                }
+                
+                // Update quantity if already in cart
+                existingItem.quantity += quantity;
+                showNotification(`${product.name} ditambahkan ke keranjang (${existingItem.quantity} item)`);
+            } else {
+                // Check if quantity exceeds stock
+                if (quantity > product.stock) {
+                    showNotification(`Stok tidak mencukupi! Tersedia: ${product.stock} item`, 'error');
+                    return;
+                }
+                
+                // Add new item to cart
+                cartItems.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: quantity
+                });
+                showNotification(`${product.name} ditambahkan ke keranjang`);
+            }
+
+            // Update cart display
+            updateCartDisplay();
+            saveCartToLocalStorage();
+        }
+
+        function removeFromCart(productId) {
+            cartItems = cartItems.filter(item => item.id !== productId);
+            updateCartDisplay();
+            saveCartToLocalStorage();
+        }
+
+        function updateCartQuantity(productId, newQuantity) {
+            const item = cartItems.find(item => item.id === productId);
+            if (item) {
+                if (newQuantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    // Check stock limit
+                    const savedProducts = localStorage.getItem('adminProducts');
+                    let products = [];
+                    if (savedProducts) {
+                        products = JSON.parse(savedProducts);
+                    }
+                    const product = products.find(p => p.id === productId);
+                    if (product && newQuantity > product.stock) {
+                        showNotification(`Stok tidak mencukupi! Tersedia: ${product.stock} item`, 'error');
+                        return;
+                    }
+                    
+                    item.quantity = newQuantity;
+                    updateCartDisplay();
+                    saveCartToLocalStorage();
+                }
+            }
+        }
+
+        function updateCartDisplay() {
+            const cartCount = document.getElementById('cart-count');
+            const cartCountMobile = document.getElementById('cart-count-mobile');
+            const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+            
+            cartCount.textContent = totalItems;
+            cartCountMobile.textContent = totalItems;
+            
+            // Show/hide cart count badge
+            if (totalItems > 0) {
+                cartCount.classList.remove('hidden');
+                cartCountMobile.classList.remove('hidden');
+            } else {
+                cartCount.classList.add('hidden');
+                cartCountMobile.classList.add('hidden');
+            }
+        }
+
+        function loadCartFromLocalStorage() {
+            const savedCart = localStorage.getItem('cartItems');
+            if (savedCart) {
+                cartItems = JSON.parse(savedCart);
+                updateCartDisplay();
+            }
+        }
+
+        function saveCartToLocalStorage() {
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
+
+        function showCartModal() {
+            const cartModal = document.getElementById('cart-modal');
+            cartModal.classList.remove('hidden');
+            renderCartItems();
+        }
+
+        function hideCartModal() {
+            const cartModal = document.getElementById('cart-modal');
+            cartModal.classList.add('hidden');
+        }
+
+        function renderCartItems() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartEmpty = document.getElementById('cart-empty');
+            const cartSummary = document.getElementById('cart-summary');
+            const cartTotal = document.getElementById('cart-total');
+
+            if (cartItems.length === 0) {
+                cartEmpty.classList.remove('hidden');
+                cartSummary.classList.add('hidden');
+                cartItemsContainer.innerHTML = '';
+                return;
+            }
+
+            cartEmpty.classList.add('hidden');
+            cartSummary.classList.remove('hidden');
+
+            let total = 0;
+            cartItemsContainer.innerHTML = '';
+
+            cartItems.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+
+                const itemElement = document.createElement('div');
+                itemElement.className = 'flex items-center space-x-3 p-3 border rounded-lg';
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-cover rounded">
+                    <div class="flex-1">
+                        <h4 class="font-medium text-sm">${item.name}</h4>
+                        <p class="text-gray-600 text-sm">Rp.${item.price.toLocaleString()}</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="updateCartQuantity(${item.id}, ${item.quantity - 1})" class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center text-sm">-</button>
+                        <span class="text-sm w-8 text-center">${item.quantity}</span>
+                        <button onclick="updateCartQuantity(${item.id}, ${item.quantity + 1})" class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center text-sm">+</button>
+                        <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+            });
+
+            cartTotal.textContent = `Rp.${total.toLocaleString()}`;
+        }
+
+        function checkout() {
+            if (cartItems.length === 0) {
+                showNotification('Keranjang belanja kosong!', 'error');
+                return;
+            }
+
+            // Get products from localStorage
+            const savedProducts = localStorage.getItem('adminProducts');
+            let products = [];
+            if (savedProducts) {
+                products = JSON.parse(savedProducts);
+            }
+
+            // Validate stock before checkout
+            let hasInsufficientStock = false;
+            cartItems.forEach(item => {
+                const product = products.find(p => p.id === item.id);
+                if (product && item.quantity > product.stock) {
+                    hasInsufficientStock = true;
+                    showNotification(`${product.name} stok tidak mencukupi!`, 'error');
+                }
+            });
+
+            if (hasInsufficientStock) {
+                return;
+            }
+
+            // Reduce stock for all items in cart
+            cartItems.forEach(item => {
+                const product = products.find(p => p.id === item.id);
+                if (product) {
+                    product.stock -= item.quantity;
+                    if (product.stock < 0) product.stock = 0;
+                }
+            });
+
+            // Save updated products to localStorage
+            localStorage.setItem('adminProducts', JSON.stringify(products));
+
+            // Clear cart
+            cartItems = [];
+            saveCartToLocalStorage();
+            updateCartDisplay();
+
+            // Hide cart modal
+            hideCartModal();
+
+            // Show success message
+            showNotification('Pembelian berhasil! Stok telah diperbarui.');
+        }
+
+        function showNotification(message, type = 'success') {
+            // Create notification element
+            const notification = document.createElement('div');
+            const bgColor = type === 'error' ? 'bg-red-500' : 'bg-green-500';
+            notification.className = `fixed top-4 right-4 ${bgColor} text-white px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-300 translate-x-full`;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

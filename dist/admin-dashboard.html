@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - T-Shirt K</title>
+    <link rel="stylesheet" href="./output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Admin Navbar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-blue-600">T-Shirt K - Admin Panel</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-700"><span id="admin-username" class="font-semibold"></span></span>
+                    <button id="logout-btn" class="bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition duration-300">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Dashboard Content -->
+    <div class="pt-16 min-h-screen">
+        <!-- Header -->
+        <div class="bg-white shadow-sm border-b">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                <h2 class="text-3xl font-bold text-gray-900">Dashboard K T-Shirt</h2>
+                <p class="text-gray-600 mt-2">Kelola produk dan stok T-Shirt K</p>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center">
+                        <div class="bg-blue-100 p-3 rounded-full">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                            </svg>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Total Produk</p>
+                            <p class="text-2xl font-bold text-gray-900" id="total-products">8</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center">
+                        <div class="bg-green-100 p-3 rounded-full">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Stok Tersedia</p>
+                            <p class="text-2xl font-bold text-gray-900" id="total-stock">156</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center">
+                        <div class="bg-yellow-100 p-3 rounded-full">
+                            <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Stok Menipis</p>
+                            <p class="text-2xl font-bold text-gray-900" id="low-stock">2</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center">
+                        <div class="bg-red-100 p-3 rounded-full">
+                            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                            </svg>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Stok Habis</p>
+                            <p class="text-2xl font-bold text-gray-900" id="out-of-stock">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Management Section -->
+            <div class="bg-white rounded-lg shadow-md">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-semibold text-gray-900">Kelola Produk</h3>
+                        <button id="add-product-btn" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition duration-300">
+                            + Tambah Produk
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Table -->
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Produk</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kategori</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Harga</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stok</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="product-table-body">
+                            <!-- Product rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Product Modal -->
+    <div id="product-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen px-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-900" id="modal-title">Tambah Produk Baru</h3>
+                </div>
+                
+                <form id="product-form" class="p-6 space-y-4">
+                    <input type="hidden" id="product-id" name="product-id">
+                    
+                    <div>
+                        <label for="product-name" class="block text-sm font-medium text-gray-700 mb-2">Nama Produk</label>
+                        <input type="text" id="product-name" name="product-name" required 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label for="product-category" class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
+                        <select id="product-category" name="product-category" required 
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Pilih kategori</option>
+                            <option value="Klasik">Klasik</option>
+                            <option value="Olahraga">Olahraga</option>
+                            <option value="Seni">Seni</option>
+                            <option value="Edisi Terbatas">Edisi Terbatas</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="product-price" class="block text-sm font-medium text-gray-700 mb-2">Harga (Rp)</label>
+                        <input type="number" id="product-price" name="product-price" required 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label for="product-stock" class="block text-sm font-medium text-gray-700 mb-2">Stok</label>
+                        <input type="number" id="product-stock" name="product-stock" required 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label for="product-description" class="block text-sm font-medium text-gray-700 mb-2">Deskripsi</label>
+                        <textarea id="product-description" name="product-description" rows="3" 
+                                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+                    
+                    <div>
+                        <label for="product-image" class="block text-sm font-medium text-gray-700 mb-2">Foto Produk</label>
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-1">
+                                <input type="file" id="product-image" name="product-image" accept="image/*" 
+                                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div id="image-preview" class="hidden">
+                                <img id="preview-img" src="" alt="Preview" class="w-16 h-16 object-cover rounded-md border">
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Format: JPG, PNG, GIF. Maksimal 2MB</p>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-3 pt-4">
+                        <button type="button" id="cancel-btn" 
+                                class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 transition duration-300">
+                            Batal
+                        </button>
+                        <button type="submit" 
+                                class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition duration-300">
+                            Simpan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Admin Dashboard -->
+    <script>
+        // Sample product data (in real app, this would come from a database)
+        let products = [
+            {
+                id: 1,
+                name: "Koleksi Klasik",
+                category: "Klasik",
+                price: 199000,
+                stock: 25,
+                description: "Desain abadi untuk sehari-hari",
+                image: "/image/clasicc k.jpg"
+            },
+            {
+                id: 2,
+                name: "Koleksi Olahraga",
+                category: "Olahraga",
+                price: 388000,
+                stock: 30,
+                description: "Sempurna untuk gaya hidup aktif",
+                image: "/image/sport.png"
+            },
+            {
+                id: 3,
+                name: "Koleksi Seni",
+                category: "Seni",
+                price: 450000,
+                stock: 15,
+                description: "Desain kreatif dan artistik",
+                image: "/image/seni k.jpg"
+            },
+            {
+                id: 4,
+                name: "Edisi Terbatas",
+                category: "Edisi Terbatas",
+                price: 1000000,
+                stock: 5,
+                description: "Desain eksklusif dalam jumlah terbatas",
+                image: "/image/limited.jpg"
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if admin is logged in
+            const isLoggedIn = localStorage.getItem('adminLoggedIn');
+            if (!isLoggedIn) {
+                window.location.href = 'admin-login.html';
+                return;
+            }
+
+            // Set admin username
+            const adminUsername = localStorage.getItem('adminUsername');
+            document.getElementById('admin-username').textContent = adminUsername || 'Admin';
+
+            // Load products from localStorage or use default
+            const savedProducts = localStorage.getItem('adminProducts');
+            if (savedProducts) {
+                products = JSON.parse(savedProducts);
+            }
+            
+            // Initialize dashboard
+            loadProducts();
+            updateStats();
+
+            // Event listeners
+            document.getElementById('logout-btn').addEventListener('click', logout);
+            document.getElementById('add-product-btn').addEventListener('click', showAddProductModal);
+            document.getElementById('cancel-btn').addEventListener('click', hideModal);
+            document.getElementById('product-form').addEventListener('submit', handleProductSubmit);
+            
+            // Image preview functionality
+            document.getElementById('product-image').addEventListener('change', handleImagePreview);
+        });
+
+        function loadProducts() {
+            const tableBody = document.getElementById('product-table-body');
+            tableBody.innerHTML = '';
+
+            products.forEach(product => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 h-10 w-10">
+                                <img class="h-10 w-10 rounded-full object-cover" src="${product.image}" alt="${product.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center" style="display: none;">
+                                    <span class="text-sm font-medium text-gray-500">${product.name.charAt(0)}</span>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <div class="text-sm font-medium text-gray-900">${product.name}</div>
+                                <div class="text-sm text-gray-500">${product.description}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                            ${product.category}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        Rp.${product.price.toLocaleString()}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="text-sm text-gray-900">${product.stock}</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        ${getStockStatus(product.stock)}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <button onclick="editProduct(${product.id})" class="text-blue-600 hover:text-blue-900 mr-3">Edit</button>
+                        <button onclick="deleteProduct(${product.id})" class="text-red-600 hover:text-red-900">Hapus</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function getStockStatus(stock) {
+            if (stock === 0) {
+                return '<span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">Habis</span>';
+            } else if (stock <= 10) {
+                return '<span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Menipis</span>';
+            } else {
+                return '<span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Tersedia</span>';
+            }
+        }
+
+        function updateStats() {
+            const totalProducts = products.length;
+            const totalStock = products.reduce((sum, product) => sum + product.stock, 0);
+            const lowStock = products.filter(product => product.stock <= 10 && product.stock > 0).length;
+            const outOfStock = products.filter(product => product.stock === 0).length;
+
+            document.getElementById('total-products').textContent = totalProducts;
+            document.getElementById('total-stock').textContent = totalStock;
+            document.getElementById('low-stock').textContent = lowStock;
+            document.getElementById('out-of-stock').textContent = outOfStock;
+        }
+
+        function showAddProductModal() {
+            document.getElementById('modal-title').textContent = 'Tambah Produk Baru';
+            document.getElementById('product-form').reset();
+            document.getElementById('product-id').value = '';
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        function showEditProductModal(product) {
+            document.getElementById('modal-title').textContent = 'Edit Produk';
+            document.getElementById('product-id').value = product.id;
+            document.getElementById('product-name').value = product.name;
+            document.getElementById('product-category').value = product.category;
+            document.getElementById('product-price').value = product.price;
+            document.getElementById('product-stock').value = product.stock;
+            document.getElementById('product-description').value = product.description;
+            
+            // Show existing image if available
+            if (product.image) {
+                document.getElementById('preview-img').src = product.image;
+                document.getElementById('image-preview').classList.remove('hidden');
+            } else {
+                document.getElementById('image-preview').classList.add('hidden');
+            }
+            
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        function hideModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+            // Reset image preview
+            document.getElementById('image-preview').classList.add('hidden');
+            document.getElementById('product-image').value = '';
+        }
+
+        function handleImagePreview(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('image-preview');
+            const previewImg = document.getElementById('preview-img');
+            
+            if (file) {
+                // Check file size (max 2MB)
+                if (file.size > 2 * 1024 * 1024) {
+                    alert('Ukuran file terlalu besar. Maksimal 2MB.');
+                    event.target.value = '';
+                    return;
+                }
+                
+                // Check file type
+                if (!file.type.startsWith('image/')) {
+                    alert('File harus berupa gambar.');
+                    event.target.value = '';
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImg.src = e.target.result;
+                    preview.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.classList.add('hidden');
+            }
+        }
+
+        function handleProductSubmit(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const productId = formData.get('product-id');
+            const imageFile = formData.get('product-image');
+            
+            const productData = {
+                name: formData.get('product-name'),
+                category: formData.get('product-category'),
+                price: parseInt(formData.get('product-price')),
+                stock: parseInt(formData.get('product-stock')),
+                description: formData.get('product-description')
+            };
+
+            // Handle image upload
+            if (imageFile && imageFile.size > 0) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    productData.image = e.target.result; // Store as base64 for demo
+                    saveProduct(productId, productData);
+                };
+                reader.readAsDataURL(imageFile);
+            } else {
+                // Keep existing image if no new image uploaded
+                if (productId) {
+                    const existingProduct = products.find(p => p.id == productId);
+                    if (existingProduct) {
+                        productData.image = existingProduct.image;
+                    }
+                }
+                saveProduct(productId, productData);
+            }
+        }
+
+        function saveProduct(productId, productData) {
+            if (productId) {
+                // Edit existing product
+                const index = products.findIndex(p => p.id == productId);
+                if (index !== -1) {
+                    products[index] = { ...products[index], ...productData };
+                }
+            } else {
+                // Add new product
+                productData.id = products.length + 1;
+                if (!productData.image) {
+                    productData.image = '/image/default-product.jpg'; // Default image
+                }
+                products.push(productData);
+            }
+
+            // Save to localStorage for persistence
+            localStorage.setItem('adminProducts', JSON.stringify(products));
+            
+            loadProducts();
+            updateStats();
+            hideModal();
+            
+            // Show success message
+            alert(productId ? 'Produk berhasil diperbarui!' : 'Produk berhasil ditambahkan!');
+        }
+
+        function editProduct(id) {
+            const product = products.find(p => p.id === id);
+            if (product) {
+                showEditProductModal(product);
+            }
+        }
+
+        function deleteProduct(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus produk ini?')) {
+                products = products.filter(p => p.id !== id);
+                localStorage.setItem('adminProducts', JSON.stringify(products));
+                loadProducts();
+                updateStats();
+                alert('Produk berhasil dihapus!');
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('adminLoggedIn');
+            localStorage.removeItem('adminUsername');
+            window.location.href = 'admin-login.html';
+        }
+    </script>
+</body>
+</html> 
